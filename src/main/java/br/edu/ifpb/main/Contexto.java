@@ -2,7 +2,7 @@ package br.edu.ifpb.main;
 
 import br.edu.ifpb.domain.Entrega;
 import br.edu.ifpb.domain.Venda;
-import br.edu.ifpb.domain.VendaAVista;
+import br.edu.ifpb.bridge.VendaAVista;
 import br.edu.ifpb.domain.venda.Produto;
 import br.edu.ifpb.strategy.EntregaPorCorreios;
 
@@ -24,10 +24,10 @@ public class Contexto {
             "cafe",3.50
         );
         Entrega entrega = new EntregaPorCorreios();
-        Venda venda = new VendaAVista();
+        Venda venda = new VendaAVista(entrega);
         venda.adicionar(10, arroz); //45
-        venda.adicionar(5, leite); //30
+        venda.adicionar(5, leite); //25
         venda.adicionar(10, cafe); //35
-        venda.confirmar(entrega); //110
+        venda.confirmar(); //105 + 3 de taxas
     }
 }
